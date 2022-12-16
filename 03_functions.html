@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Functions</title>
+</head>
+<body>
+
+  <div class="header">text</div>
+    
+    <script type="text/javascript">
+      // DEFINING A FUNCTION
+
+      // A function definition is a regular binding where the value of the binding is a function. For example, this code defines square to refer to a function that produces the square of a given number:
+
+      const square = function(x) {
+          return x * x;
+        };
+
+        console.log(square(12));    // -> 144
+
+        // A function can have multiple parameters or no parameters at all. In the following example, makeNoise does not list any parameter name, whereas power lists two:
+
+        const makeNoise = function() {
+          console.log("!Pling");
+        };
+
+        // power function
+
+        // const power = function(base, exponent) {
+        //   let result = 1;
+        //   for (let count = 0; count < exponent; count) {
+        //     result *= base;
+        //   }
+
+        //   return result;
+        // }
+
+        // console.log(power(2, 10));  // -> 1024
+        
+        // A return statement determine the value the function return. When control comes across such a statement, it immediately jumps out of the current function and gives the returned value to the code that called the function. A return keyword without an expressing after it will cause the function the function to return  undefined. Functions that don’t have a return statement at all, such as makeNoise, similarly return undefined.
+
+        // Parameters to a function behave like regular bindings, but their initial values are given by the caller of the function, not the code in the function itself.
+
+        // BINDINGS AND SCOPES
+
+        // Each binding has a scope, which is the part the program in which the binding is visible. For binding defined outsite of any function or block, these are call global.
+
+        let x = 10;
+        if (true){
+          let y = 20;
+          var z = 30;
+
+          console.log(x+y+z);
+          // 60
+        }
+
+        // y is not visible here
+        console.log(x + z);
+        // 40
+
+        const halve = function(n) {
+          return n / 2;
+        };
+
+        let n = 10;
+        console.log(halve(100));
+        // 50
+        console.log(n);
+        // 10
+
+        // NESTED SCOPE
+
+        // JavaScript distinguishes not just global and local binding. Block and function can be created inside other block and functions, producing multiple degrees of locality
+
+        const hummus = function(factor) {
+          let ingredient = function(amount, unit, name) {
+            let ingredientAmount = factor * amount;
+            if (ingredientAmount > 1) {
+              unit += "s";
+            }
+            console.log(`${ingredientAmount} ${unit} ${name}`);
+          }
+            ingredient(1, "can", "chickpeas");
+            ingredient(0.25, "cup", "tahini");
+            ingredient(0.25, "cup", "lemon juice");
+            ingredient(1, "clove", "garlic");
+            ingredient(2, "tablespoon", "olive oil");
+            ingredient(0.5, "teaspoon", "cumin");
+        }
+
+        console.log(hummus(2));
+        // The set of bindings visible inside a block is determined by the place of that block in the program text. Each local scope can also see all the local scopes that contain it, and all scopes can see the global scope. This approach to binding visibility is called lexical scoping.
+
+        // let launchMissiles = function() {
+        //   missleSystem.launch("now");
+        // };
+        // if (safeMode) {
+        //   launchMissiles = function() {/*Do nothing*/}
+        // }
+
+        // DECLARATION NOTATION
+
+        //There is a slightly shorter way to creat a function binding.
+        // function square(x) {
+        //   return x * x;
+        // }
+
+        console.log("The future says:", future());
+
+        function future() {
+          return "You'll never have flying cars";
+        }
+        // The statement defines the binding square and points it at the given function.It is slightly easier to write and doesn't require a semicolon after the function.
+
+        // There is one subtlety with this form of definition function
+
+        console.log("The future says:", future());
+
+        function future() {
+            return "You'll never have flying cars"
+        }
+
+        // ARROW FUNCTION
+        // There's a third notation for function.It uses an arrow (=>)
+
+        // const power = (base, exponent) => {
+        //   let result = 1;
+        //   for (let count = 0; count < exponent; count++) {
+        //     result *= base
+        //   }
+        // };2
+
+        // const square1 = (x) => { return x * x };
+        // const square2 = x => x * x;
+
+        // When an arrow function has no parameter
+
+        const horn = () => {
+          console.log("Toot");
+        };
+
+        // THE CALL STACK
+
+        function greet(who) {
+          console.log("Hello " + who);
+        }
+
+        greet("Harry")
+        console.log("bye");
+    </script>
+
+</body>
+</html>

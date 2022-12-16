@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Program structure</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        // Control Flow
+
+        // let theNumber = Number(prompt("Pick a number"));
+        // console.log("Your number is the square root of " + theNumber * theNumber);
+        
+        // The function Number convert a value to a number
+        // There has other smilar function called String() and Boolean()
+
+        // Here is the rather trival schematic representation of straight-line control flow:
+
+        //  ==============>
+    
+    // ***********************************************
+    
+    // Conditional Execution 
+    /*
+    Not all programs are straight roads. We may, for example, want to create a branching road, where the program takes the proper branch based on the situation at hand. This is called conditional execution.
+    */
+    
+    // let theNumber = Number(prompt("Pick a number"));
+    // if (!Number.isNaN(theNumber)) {
+    //     console.log("Your number is the square root of " + theNumber * theNumber);
+    // }
+    
+    // The Number.isNaN function is a standard JavaScript function that returns true only if the argument it is given is NaN.
+    // the condition translates to “unless theNumber is not-a-number, do this”.
+
+    // You could also have omitted {} in this case, since they hold only a single statement
+    
+    // We’ll mostly follow that convention in this book, except for the occasional one-liner
+
+    if(1 + 1 == 2) console.log("It is true");   //It's true
+
+
+    // You often won’t just have code that executes when a condition holds true, but also code that handles the other case
+
+    // You can use the else keyword, together with if, to create two separate, alternative execution paths.
+
+    // let theNumber = Number(prompt("Pick a number"));
+    // if (!Number.isNaN(theNumber)) {
+    //     console.log("Your number is the square root of " + theNumber * theNumber);
+    // } else {
+    //     console.log("Hey. Why didn't you give me a number?");
+    // }
+
+    // If you have more than two paths to choose from, you can “chain” multiple if/else pairs together
+
+    // let num = Number(prompt("Pick a number"));
+
+    // if (num < 10) {
+    //     console.log("Small");
+    // }else if(num < 100) {
+    //     console.log("Medium");
+    // }else{
+    //     console.log("Large");
+    // }
+
+    // WHILE and DO LOOPS
+
+    // Consider a program that outputs all even numbers from 0 to 12.
+
+    console.log(0);
+    console.log(2);
+    console.log(4);
+    console.log(6);
+    console.log(8);
+    console.log(10);
+    console.log(12);
+    // That works, but the idea of writing a program is to make something less work, not more.If we need all even numbers less than 1000 this approach would be unworkable.What we need is a way to run a piece of code multiple times. This form is control flow is called a loop.
+
+    // Looping control flow allows us to go back to some point in the program where we were before and repeat it with our current program state. If we combine this with a binding that counts, we can do something like this:
+
+    let number = 0;
+
+    while( number <= 12) {
+        console.log(number);
+        number = number + 2;
+    }
+    //  -> 0
+    //  -> 2
+    //  -> ...etcetera
+
+    // let result = 1;
+    // let counter = 0;
+    // while (counter < 10) {
+    //     result = result * 2;
+    //     counter += 1;
+    // }
+    // console.log(result);
+    
+    // A do loop is a control structure similar to a while loop. It differs only on one point: a do loop always executes its body at least once, and it starts testing whether it should stop only after that first execution. To reflect this, the test appears after the body of the loop.
+
+    let yourName;
+    do {
+        yourName = prompt("Who are you?");
+    } while(!yourName);
+
+    console.log(yourName);
+
+    //-----------------------------------------------
+
+    // INDENTATION CODE 
+    // The role of this indentation inside blocks is to make the structure of the code stand out. In code where new blocks are opened inside other blocks, it can become hard to see where one block ends and another begins. With proper indentation, the visual shape of a program corresponds to the shape of the blocks inside it. I like to use two spaces for every open block, but tastes differ—some people use four spaces, and some people use tab characters. The important thing is that each new block adds the same amount of space.
+    if (false != true) {
+      console.log("That make sense.");
+      if ( 1< 2) {
+        console.log("No surprise there.");
+      }
+    }
+
+// ------------------------------------------------
+
+    // FOR LOOPS
+
+    // First a “counter” binding is created to track the progress of the loop. Then comes a while loop, usually with a test expression that checks whether the counter has reached its end value. At the end of the loop body, the counter is updated to track progress.
+
+    for ( let number = 0; number <= 12; number += 2) {
+        console.log(number);
+    }
+
+    let result = 1;
+    
+    for (let counter = 0; counter < 10; counter += 1){
+        result = result * 2;
+    }   
+    console.log(result);
+
+// ------------------------------------------------
+    // BREAKING OUT OF A LOOP
+
+    // Having the looping condition produce false is not the only way a loop can finish. There is a special statement called break that has the effect of immediately jumping out of the enclosing loop.
+
+    for (let current = 20; ; current += 1) {
+      if (current % 7 == 0) {
+        console.log(current);
+        break;
+      }
+    }
+// ------------------------------------------------
+    // UPDATING BIDINGS SUCCINCTLY
+
+    // Especially when looping, a program often needs to “update” a binding to hold a value based on that binding’s previous value.
+
+    // counter = counter += 1;
+
+    // JavaScript provides a shortcut for this.
+
+    // counter += 1;
+
+    // Similar shortcuts work for many other operators, such as result *= 2 to double result or counter -= 1 to count downward.
+
+    for (let number = 0; number <= 12; number += 2) {
+        console.log(number);
+    }
+    // For counter += 1 and counter -= 1, there are even shorter equivalents: counter++ and counter--.
+// ------------------------------------------------
+    // DISPATCHING ON A VALUE WITH SWITCH
+
+    // It is not uncommon for code to look like this:
+
+    // if (x == "values1") action1();
+    // else if (x == "value2") action2();
+    // else if (x == "value3") action3();
+    // else defaultAction();
+
+    // There is a construct called switch that is intended to express such a "dispatch" in more direct way. Unfirtunately, the syntax JavaScript uses for this  (which it inherited from C/Java line of programming language) is somewhat awkward-a chain of if statement may look better.
+
+    switch (prompt("What is the weather like?")) {
+      case "rainy":
+        console.log("Remember to bring an umbrella.");
+        break;
+      case "sunny":
+        console.log("Dress lightly.");
+        break;
+      case "cloudy":
+        console.log("Go outside.");
+        break;
+      default:
+        console.log("Unknown weather type!");
+        break;
+    }
+
+    // SUMMARY
+
+    // You now know that a program is built out of statement. which themselves sometimes contain more statements. Statements tend tp contain expressions, which themselves can be built out of smaller expressions.
+    
+    // Putting statements after one another give you a program that is executed from top to bottom, You can introduce disturbances in the flow of control by using conditional (if, else,and switch) and looping(while, do while, and for) statement.Putting
+
+    // Biding can be used to file pieces of data under a name, and they are useful for tracking state in your program. The enviroment is the set of bindings that are defined. JavaScript systems always put a number of useful standard binding into your enviroment.Biding
+    
+    // Function are special values that encapsulate a piece of program. You can invoke them by writing functionName (argument1, argument2). Such a function call is an expression and may produce a value.
+
+
+    // LOOPING A TRIANGLE 
+    
+    // for (let hax = "#"; hax.length < 8; hax+="#") {
+    //   console.log(hax);
+    // }
+    
+    // That my modify program
+    let size = Number(prompt("Please enter size"));
+
+    for (let i = "#"; i.length < size; i+="#") {
+      console.log(i);
+    }
+
+    // FizzBuzz
+
+    for (let i = 1; i <= 100; i++) {
+      let n = "";
+
+      if ((i % 3) == 0 ) {
+        console.log("Fizz");
+      }else if((i % 5) == 0) {
+        console.log("Buzz");
+      }else{
+        console.log(i || n)
+      }
+    }
+
+    // CHESSBOARD
+
+    let s = Number(prompt());
+    let board = "";
+
+    for (let x = 0; x <= s; x++) {
+      for (let y = 0; y <= s; y++) {
+        if ((x+y) % 2 == 0) {
+          board += " ";
+        }else {
+          board += "#";
+        }
+      }
+      board += "\n";
+    }
+
+    console.log(board);
+    
+    </script>
+</body>
+</html>
